@@ -93,7 +93,7 @@ Widget loadImageData(String image) {
   );
 }
 
-// This is text widget to show text
+// This is text widget to show text for title and description
 Widget showText(String message, double fontSize, FontWeight fontWeight) {
   return Text(
     message,

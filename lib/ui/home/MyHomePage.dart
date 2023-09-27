@@ -27,6 +27,7 @@ class _MyHomePageState extends State<MyHomePage> {
         appBar: AppBar(
           title: Text(homeProvider.showTitle()),
           actions: [
+            // refresh button to reload data on home page
             IconButton(
               onPressed: () {
                 homeProvider.callAPI();
@@ -40,7 +41,9 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         body: Column(
           children: [
+            // This view is used to show text form field view go to HomeWidget to check functionality
             searchBox(context, homeProvider),
+            // This view is used to show data list view go to HomeWidget to check functionality
             dataList(context, homeProvider),
           ],
         ),
