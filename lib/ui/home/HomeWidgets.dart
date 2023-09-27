@@ -15,24 +15,24 @@ Widget searchBox(BuildContext context, HomeProvider homeProvider) {
       },
       decoration: InputDecoration(
         prefixIcon: IconButton(
-          onPressed: () {
-
-          },
+          onPressed: () {},
           icon: const Icon(
             Icons.search,
             color: Colors.black,
           ),
         ),
-        suffixIcon: homeProvider.showClose ? IconButton(
-          onPressed: () {
-            homeProvider.clearTextField();
-            homeProvider.updateStatus();
-          },
-          icon: const Icon(
-            Icons.close,
-            color: Colors.black,
-          ),
-        ) : null,
+        suffixIcon: homeProvider.showClose
+            ? IconButton(
+                onPressed: () {
+                  homeProvider.clearTextField();
+                  homeProvider.updateStatus();
+                },
+                icon: const Icon(
+                  Icons.close,
+                  color: Colors.black,
+                ),
+              )
+            : null,
       ),
     ),
   );
@@ -40,40 +40,40 @@ Widget searchBox(BuildContext context, HomeProvider homeProvider) {
 
 // This is list view widget to show data
 Widget dataList(BuildContext context, HomeProvider homeProvider) {
-  return homeProvider.model == null
+  return homeProvider.rows == null
       ? const CircularProgressIndicator()
       : Expanded(
-        child: ListView.separated(
-    itemCount: homeProvider.model!.rows!.length,
-    separatorBuilder: (context, index) {
-        return Divider(
-          height: 1,
-          color: Colors.grey.shade400,
-        );
-    },
-    itemBuilder: (context, index) {
-        return Row(
-          children: [
-            loadImageData(homeProvider.model!.rows![index].imageHref == null ? "" : homeProvider.model!.rows![index].imageHref.toString()),
-            const SizedBox(width: 5),
-            Expanded(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
+          child: ListView.separated(
+            itemCount: homeProvider.rows!.length,
+            separatorBuilder: (context, index) {
+              return Divider(
+                height: 1,
+                color: Colors.grey.shade400,
+              );
+            },
+            itemBuilder: (context, index) {
+              return Row(
                 children: [
-                  const SizedBox(height: 5),
-                  showText(homeProvider.model!.rows![index].title == null ? "" : "Title: ${homeProvider.model!.rows![index].title}", 18, FontWeight.w600),
-                  const SizedBox(height: 5),
-                  showText(homeProvider.model!.rows![index].description == null ? "" : "Description: ${homeProvider.model!.rows![index].description}", 14, FontWeight.w400),
-                  const SizedBox(height: 5),
+                  loadImageData(homeProvider.rows![index].imageHref == null ? "" : homeProvider.rows![index].imageHref.toString()),
+                  const SizedBox(width: 5),
+                  Expanded(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const SizedBox(height: 5),
+                        showText(homeProvider.rows![index].title == null ? "" : "Title: ${homeProvider.rows![index].title}", 18, FontWeight.w600),
+                        const SizedBox(height: 5),
+                        showText(homeProvider.rows![index].description == null ? "" : "Description: ${homeProvider.rows![index].description}", 14, FontWeight.w400),
+                        const SizedBox(height: 5),
+                      ],
+                    ),
+                  ),
                 ],
-              ),
-            ),
-          ],
+              );
+            },
+          ),
         );
-    },
-  ),
-      );
 }
 
 // This is image view widget to show image
