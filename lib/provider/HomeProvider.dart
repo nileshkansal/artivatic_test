@@ -25,6 +25,17 @@ class HomeProvider extends ChangeNotifier implements ResponseListener {
     notifyListeners();
   }
 
+  String showTitle() {
+    if(model == null) {
+      return "";
+    } else if(model != null && model!.title == null) {
+      return "";
+    } else {
+      return model!.title.toString();
+    }
+  }
+
+
   void callAPI() {
     final getRequest = APIRequest(listener: this);
     getRequest.getResponse();

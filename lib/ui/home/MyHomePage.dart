@@ -25,7 +25,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return Consumer<HomeProvider>(builder: (BuildContext context, HomeProvider homeProvider, Widget? child) {
       return Scaffold(
         appBar: AppBar(
-          title: Text(homeProvider.model!.title ?? ""),
+          title: Text(homeProvider.showTitle()),
           actions: [
             IconButton(
               onPressed: () {
@@ -41,7 +41,7 @@ class _MyHomePageState extends State<MyHomePage> {
         body: Column(
           children: [
             searchBox(context, homeProvider),
-            // dataList(context, homeProvider),
+            dataList(context, homeProvider),
           ],
         ),
       );
